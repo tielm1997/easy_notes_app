@@ -22,11 +22,11 @@
 <p>In order to add or edit text, just click on the text itself. In addition you can also click on the green Edit button on the bottom of the Note.</p>
 
 ### Star Posts         
-<img height="322" src="./Images for Readme/note_star.png"> | <img height="322" src="./Images for Readme/red_arrow.png"> | <img height="322" src="./Images for Readme/note_star_2.png">
+<img height="322" src="./Images for Readme/star_1.png">  <img height="322" src="./Images for Readme/red_arrow.png">  <img height="322" src="./Images for Readme/star_2.png">
 <p>In order to star/favorite a Note just click on the Star icon in the top left on the Note. Starred notes will be ordered in front of all other non-starred notes.</p>
 
 ### Upload Images
-<img height="322" src="./Images for Readme/note_image_1.png"> | <img height="322" src="./Images for Readme/red_arrow.png"> | <img height="322" src="./Images for Readme/note_image.png">
+<img height="322" src="./Images for Readme/note_image_1.png">  <img height="322" src="./Images for Readme/red_arrow.png">  <img height="322" src="./Images for Readme/note_image.png">
 <p>To upload and image for your note just click on the Upload Image button near the bottom of the note. Most image types including .gif files will work.<br>
 (*Try using images with transparent backgrounds for the best look.)</p>
 
