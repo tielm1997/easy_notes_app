@@ -1,0 +1,180 @@
+[[extend 'layout.html']]
+<div class="container">
+  <div id="vue-target">
+      
+    <div class="columns is-mobile is-multiline is-centered">
+      <div class="column is-12">
+        <div class="box is-shadowless">
+          <section class="section">
+            <button @click="add_note" class="button is-danger">
+              <span class="icon"><i class="fa fa-plus"></i></span>
+            </button>
+          </section>
+        </div>
+      </div>
+      <div v-for="note in notes">
+        <div class="column">
+          <div class="box" v-bind:class="style_helper(note.color)">
+            <section class="section">
+              <nav class="level is-mobile">
+                <div class="level-left">
+                  <strong @click="do_edit(note._idx)" v-if="!note.edit" class="level-item">{{note.title}}</strong>
+                  <input v-if="note.edit" v-model="note.title" class="input"
+                         :class="note.title === note.server_title ? 'is-link' : 'is-danger'"
+                  >
+                </div>
+                <div class="level-right">
+                  <span v-if="note.starred">
+                    <i @click="toggle_starred(note._idx)" class="level-item fa fa-star" style="color:gold"></i>
+                  </span>
+                  <span v-else>
+                    <i @click="toggle_starred(note._idx)" class="level-item fa fa-star-o"></i>
+                  </span>
+                </div>
+              </nav>
+            </section>
+            
+            <section v-if="note.image" class="section">
+                <div>
+                    <figure class="image is-3by2" style="margin: auto;" v-bind:style="transparent_helper(note.color)">
+                        <img :src="note.image">
+                    </figure>
+                    <div class="has-text-centered">
+                        <button @click="remove_image(note._idx)" class="button is-small is-outlined" style="background-color: whitesmoke;">Remove Image</button>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="section">
+              <div v-if="note.image">
+                  <textarea @click="do_edit(note._idx)" v-if="!note.edit" class="textarea" v-bind:class="style_helper(note.color)" v-bind:placeholder="note.content"></textarea>
+                  <textarea v-if="note.edit" v-model="note.content" class="textarea"
+                        :class="note.content === note.server_content ? 'is-link' : 'is-danger'">
+                  </textarea>
+              </div>
+              <div v-else>
+                  <textarea @click="do_edit(note._idx)" v-if="!note.edit" class="textarea" v-bind:class="style_helper(note.color)" v-bind:placeholder="note.content" style="height: 303px;"></textarea>
+                  <textarea v-if="note.edit" v-model="note.content" class="textarea"
+                        :class="note.content === note.server_content ? 'is-link' : 'is-danger'">
+                  </textarea>
+              </div>
+            </section>
+            
+            <section v-if="!note.image" class="section">
+                <div>
+                    <div class="file is-small is-centered">
+                        <label class="file-label">
+                            <input class="file-input" type="file" accept="image/*" @change="img_upload(note._idx, $event)">
+                            <span class="file-cta">
+                                <span class="file-icon">
+                                    <i class="fa fa-upload"></i>
+                                </span>
+                                <span class="file-label">
+                                    Upload Image
+                                </span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="section">
+              <div class="level is-mobile">
+                <div class="level-left">
+                  <div class="level-item">
+                    <button @click="color_change(note._idx, 0)" class="button is-small has-background-indianred">
+                      <span class="icon"></span>
+                    </button>
+                  </div>
+                  <div class="level-item">
+                    <button @click="color_change(note._idx, 1)" class="button is-small has-background-yeller">
+                      <span class="icon"></span>
+                    </button>
+                  </div>
+                  <div class="level-item">
+                    <button @click="color_change(note._idx, 2)" class="button is-small has-background-lightgreen">
+                      <span class="icon"></span>
+                    </button>
+                  </div>
+                  <div class="level-item">
+                    <button @click="color_change(note._idx, 3)" class="button is-small has-background-lightskyblue">
+                      <span class="icon"></span>
+                    </button>
+                  </div>
+                  <div class="level-item">
+                    <button @click="color_change(note._idx, 4)" class="button is-small has-background-mediumpurp">
+                      <span class="icon"></span>
+                    </button>
+                  </div>
+                  <div class="level-item">
+                  </div>
+                </div>
+                <div class="level-right">
+                  <!-- Edit Button -->
+                  <div v-if="!note.edit" class="level-item">
+                    <button @click="do_edit(note._idx)" class="button is-primary is-small">
+                      <i class="fa fa-fw fa-pencil-square-o" style="color:white"></i>
+                    </button>
+                  </div>
+                  <!-- Delete Button -->
+                  <div v-if="!note.edit" class="level-item">
+                    <button @click="toggle_delete(note._idx)" class="button is-danger is-small">
+                      <i class="fa fa-trash fa-lg" style="color:white"></i>
+                    </button>
+                  </div>
+                  <!-- Confirm Edit Button -->
+                  <div v-if="note.edit" class="level-item">
+                    <button @click="do_save(note._idx)" class="button is-primary is-small"
+                            :class="note.is_pending ? 'is-loading' : ''">
+                      <i class="fa fa-check-square-o fa-fw"></i>
+                    </button>
+                  </div>
+                  <!-- Cancel Edit Button -->
+                  <div v-if="note.edit" class="level-item">
+                    <button @click="do_cancel(note._idx)" class="button is-danger is-small"
+                            :class="note.is_pending ? 'is-loading' : ''">
+                      <i class="fa fa-close fa-fw"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <div class="modal" :class="note.pending_delete ? 'is-active' : ''">
+          <div @click="toggle_delete(note._idx)" class="modal-background"></div>
+            <div class="modal-content">
+              <div class="box has-text-centered">
+                <strong>Do you really want to delete?</strong>
+                <section class="section">
+                  <button @click="do_delete(note._idx)" class="button is-danger">
+                  <i class="fa fa-fw fa-trash has-text-white"></i></button>
+                  <button @click="toggle_delete(note._idx)" class="button is-danger">
+                  <i class="fa fa-close"></i></button>
+                </section>
+              </div>
+            </div>
+          <button @click="toggle_delete(note._idx)" class="modal-close is-large" aria-label="close"></button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+[[block page_scripts]]
+<!-- Loads the index-specific js for Vue -->
+<script>
+  let set_color_url = "[[=XML(set_color_url)]]";
+  let set_starred_url = "[[=XML(set_starred_url)]]";
+  let delete_url = "[[=XML(delete_url)]]";
+  let notes_url = "[[=XML(notes_url)]]";
+  let callback_url = "[[=XML(callback_url)]]";
+  let image_url = "[[=XML(image_url)]]";
+  let remove_image_url = "[[=XML(remove_image_url)]]";
+  let user_email = "[[=XML(user_email)]]";
+</script>
+<script src="js/index.js"></script>
+[[end]]
