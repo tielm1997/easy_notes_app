@@ -13,7 +13,7 @@
 (*Every change to your note except changing color will reorder that note.)</p>
 
 ### Create Note 
-![Create Note Img](/Images for Readme/new_note.png)
+<img height="322" src="./Images for Readme/new_note.png">
 <p>Click on the red plus in the Top Left of the page to create a Note. Enter whatever content you please and hit the green Save Icon on the bottom of the note to save it.<br> 
 (*An Image cannot be added until the Note is saved.)</p>
 
