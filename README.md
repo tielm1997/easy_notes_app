@@ -1,5 +1,5 @@
 # Easy Notes App 
-<p>The Easy Notes App is a web application designed to help you create easy and simple notes. To get started just navigate to the <a href="https://www.google.com">Easy Notes App</a> website. For a brief walkthrough of the Easy Notes App see below.</p>
+<p>The Easy Notes App is a web application designed to help you create easy and simple notes. To get started just navigate to the <a href="http://smulder.pythonanywhere.com/easy_notes_app">Easy Notes App</a> website. For a brief walkthrough of the Easy Notes App see below.</p>
 
 ## Login 
 <p>In order to keep users notes private, login is required. If you would just like to view the Easy Notes App with some example date feel free to use the following login:</p>
