@@ -25,12 +25,10 @@
 <p>In order to star/favorite a Note just click on the Star icon in the top left on the Note. Starred notes will be ordered in front of all other non-starred notes.</p>
 
 ### Upload Images
-<img height="322" style="margin: auto;" src="./Images for Readme/note_image_1.png">
-<img height="322" style="margin: auto;" src="./Images for Readme/red_arrow.png">
-<img height="322" style="margin: auto;" src="./Images for Readme/note_image.png">
+<img height="322" style="margin: auto;" src="./Images for Readme/note_image_1.png"> | <img height="322" style="margin: auto;" src="./Images for Readme/red_arrow.png"> | <img height="322" style="margin: auto;" src="./Images for Readme/note_image.png">
 <p>To upload and image for your note just click on the Upload Image button near the bottom of the note. Most image types including .gif files will work.<br>
 (*Try using images with transparent backgrounds for the best look.)</p>
 
 ### Change Note Color 
-![Note Color Img](/Images for Readme/note_color.png)
+<img height="322" style="margin: auto;" src="./Images for Readme/note_color.png">
 <p>To change the color of your note select your desired color from the color bar at the bottom of the note.</p>
