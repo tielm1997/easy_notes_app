@@ -30,5 +30,5 @@
 (*Try using images with transparent backgrounds for the best look.)</p>
 
 ### Change Note Color 
-<img height="322" style="display: block; margin: auto;" src="./Images for Readme/note_color.png">
+<img height="322" style="display: block; margin: auto; width: 50%;" src="./Images for Readme/note_color.png">
 <p>To change the color of your note select your desired color from the color bar at the bottom of the note.</p>
